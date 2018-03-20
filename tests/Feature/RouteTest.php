@@ -33,4 +33,11 @@ class RouteTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function testPollsStore()
+    {
+        $response = $this->get('/polls/store');
+
+        $response->assertStatus(200);
+    }
 }

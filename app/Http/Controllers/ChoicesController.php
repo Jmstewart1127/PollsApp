@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Choices;
 use Illuminate\Http\Request;
 
 class ChoicesController extends Controller
@@ -13,7 +14,7 @@ class ChoicesController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -23,7 +24,7 @@ class ChoicesController extends Controller
      */
     public function create()
     {
-        //
+        return view('polls.create');
     }
 
     /**
@@ -34,7 +35,13 @@ class ChoicesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $choice = new Choices([
+            'poll_id'=>$request['poll_id'],
+            'choice_title'=>$request['choice_title'],
+            'number_of_votes'=>0
+        ]);
+
+        return $this->index();
     }
 
     /**

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
+use App\Polls;
 
 class PollsController extends Controller
 {
@@ -13,7 +17,9 @@ class PollsController extends Controller
      */
     public function index()
     {
-        //
+        $polls = Polls::all();
+
+        return view('polls.index', compact('polls', $polls));
     }
 
     /**
@@ -23,7 +29,7 @@ class PollsController extends Controller
      */
     public function create()
     {
-
+        return view('polls.create');
     }
 
     /**
@@ -34,7 +40,16 @@ class PollsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $userId = Auth::id();
+
+        $poll = new Polls([
+            'title'=>$request['title'],
+            'user_id'=>$userId,
+        ]);
+
+        $poll->save();
+
+        return $this->index();
     }
 
     /**
