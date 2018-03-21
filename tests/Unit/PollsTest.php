@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
+use App\User;
 use App\Polls;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -16,6 +17,17 @@ class PollsTest extends TestCase
      */
     public function testExample()
     {
+        $this->assertTrue(true);
+    }
+
+    public function testMiddleWareOnCreate()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user)
+            ->withSession(['foo' => 'bar'])
+            ->get('polls/create');
+
         $this->assertTrue(true);
     }
 

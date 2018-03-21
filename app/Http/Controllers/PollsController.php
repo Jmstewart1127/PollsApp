@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 use App\Polls;
+use App\Http\Controllers\ChoicesController;
 
 class PollsController extends Controller
 {
@@ -42,14 +43,23 @@ class PollsController extends Controller
     {
         $userId = Auth::id();
 
+        $isPrivate = 0;
+
+        if ($request['private'] != null) {
+            $isPrivate = 1;
+        }
+
         $poll = new Polls([
             'title'=>$request['title'],
+            'private'=>$isPrivate,
             'user_id'=>$userId,
         ]);
 
         $poll->save();
 
-        return $this->index();
+        $choicesController = new ChoicesController();
+
+        return $choicesController->create();
     }
 
     /**

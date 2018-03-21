@@ -8,11 +8,11 @@
                     <div class="panel-heading">New Poll</div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ url('polls/store') }}">
+                        <form class="form-horizontal" method="POST" action="{{ url('choices/store') }}">
                             {{ csrf_field() }}
 
                             <div class="form-group">
-                                <label for="title" class="col-md-4 control-label">Poll Title</label>
+                                <label for="title" class="col-md-4 control-label">Poll Options</label>
 
                                 <div class="col-md-6">
                                     <input id="title" type="text" class="form-control" name="title" required autofocus>

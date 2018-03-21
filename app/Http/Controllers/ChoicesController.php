@@ -41,7 +41,9 @@ class ChoicesController extends Controller
             'number_of_votes'=>0
         ]);
 
-        return $this->index();
+        $choice->save();
+
+        return $this->create();
     }
 
     /**

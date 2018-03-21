@@ -26,7 +26,7 @@ class ChoicesTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function testCreateChoices()
+    public function testStoreChoices()
     {
         $choice = factory(Choices::class)->create();
 
